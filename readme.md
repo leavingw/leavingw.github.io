@@ -1,1 +1,1 @@
-Added a test
+Test
