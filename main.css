@@ -6,11 +6,11 @@
     background-color:rgba(228, 238, 136, 0.767);
   }
   
-  #l1 {
+  .l1 {
     float:right;
   }
   
-  #l1 a {
+  .l1 a {
     display: block;
     color: white;
     text-align: center;
@@ -18,7 +18,7 @@
     text-decoration: none;
   }
   
-  #l1 a:hover {
+  .l1 a:hover {
     background-color: #111111;
   }
   a:link, a:visited {
