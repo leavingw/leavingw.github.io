@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bothniabladet</title>
+    <link rel="stylesheet" href="upload.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+   <div>
+        <ul id="u1">
+          <li ><a id="bothnia" href="main.html" >Bothniabladet</a></li>
+            <li class="l1"><button onclick="document.location='login.html'" title="Log in">Login</button> </li>
+            <li class="l1"><i style="font-size:24px; padding: 15px;" class="fa">&#xf291;</i></li>
+            <li class="l1"><a href="main.html">Upload</a></li>
+            <li class="l1"><a href="sida2.html">Sign up</a></li>
+            <li class="l1"><a href="sida3.html">Contact</a></li>
+            <li class="l1"><a href="sida4.html">User terms</a></li>
+        
+        </ul> 
+        
+    </div>
+
+    <body></body>
+    
+<form action="/action_page.php">
+<div class="Upload">
+  <label for="myfile">Upload image:</label>
+  <input type="file" id="myfile" name="myfile" multiple><br><br>
+</div>
+
+  <div>
+    <label id="Name">&emsp; &nbsp;Name</label>
+    <input type="Name">
+  </div>
+  
+  </div
+    
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+    var subjectObject = {
+      "Summer": {},
+      "Spring": {},
+      "Winter": {},
+      "Events": {},
+      "Sports": {},
+      "Food": {},
+      "LTU": {},
+    }
+    window.onload = function() {
+      var subjectSel = document.getElementById("subject");
+      for (var x in subjectObject) {
+        subjectSel.options[subjectSel.options.length] = new Option(x, x);
+      }
+      subjectSel.onchange = function() {
+        //empty Chapters- and Topics- dropdowns
+        chapterSel.length = 1;
+        topicSel.length = 1;
+        //display correct values
+        for (var y in subjectObject[this.value]) {
+          topicSel.options[topicSel.options.length] = new Option(y, y);
+        }
+      }
+      topicSel.onchange = function() {
+        //empty Chapters dropdown
+        chapterSel.length = 1;
+        //display correct values
+        var z = subjectObject[subjectSel.value][this.value];
+        for (var i = 0; i < z.length; i++) {
+          chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+        }
+      }
+    }
+    </script>
+    </head>   
+    <body>
+    
+    <form name="form1" id="form1" action="/action_page.php">
+    Category: <select name="Category" id="subject">
+        <option value="" selected="selected">Select Category</option>
+      </select>
+      <br><br>
+
+  <form action="https://example.com">
+    <label>
+      Date:
+      <input type="date" name="bday">
+    </label>
+  
+    <H4>Image description</H4>
+
+     <input type="text" id="myText" value="Some text...">
+
+<button onclick="myFunction()">submit</button>
+
+<p id="demo"></p>
+  </form>
+</body>
+</html>
