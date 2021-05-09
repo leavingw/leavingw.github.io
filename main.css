@@ -40,16 +40,16 @@ button {
     margin-top: 10px;
     background-color: olivedrab;
     color: white;
-    
+    }
 
-}
 #bothnia {
-    font-size: 30px;
-    color:olivedrab;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-align: left;
-    float:left;
-    padding: 10px;
+  font-size: 30px;
+  color:olivedrab;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: left;
+  float:left;
+  padding: 10px;
+  background-color: transparent;
 
 }
 form {
