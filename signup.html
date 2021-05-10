@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bothniabladet</title>
+    <link rel="stylesheet" href="signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+   <div>
+        <ul id="u1">
+
+            <li ><a id="bothnia" href="main.html" >Bothniabladet</a></li>
+            <li class="l1"><button onclick="document.location='signin.html'" title="Log in">Login</button> </li>
+            <li class="l1"><i style="font-size:24px; padding: 15px;" class="fa">&#xf291;</i></li>
+            <li class="l1"><a href="upload.html">Upload</a></li>
+            <li class="l1"><a href="signup.html">Sign up</a></li>
+
+            <li class="l1"><a href="contact.html">Contact</a></li>
+            <li class="l1"><a href="userterms.html">User terms</a></li>
+        
+        </ul> 
+        
+    </div>
+
+    
+   
+   <div>
+       <form action="userpage.html" method="GET">
+            <h2>Sign up</h2>
+            <div>
+                <label for="Firstname">Firstname</label>
+                <input type="text" name="Firstname" id="Firstname" placeholder="Firstname" required>
+            </div>
+            <div>
+                <label for="Lastname">Lastname</label>
+                <input type="text" name="Lastname" id="Lastname" placeholder="Lastname" required>
+            </div>
+             <div>
+                <label for="Email">Email</label>
+                <input type="email" name="Email" id="Email" placeholder="abc123@gmail.com" required>
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="********" required>
+            </div>
+            <div>
+                <label for="confirmPassword">Repeate Password</label>
+                <input type="password" name="confirmPassword" id="confirmPassword" placeholder="********" required>
+            </div>
+            <script>var password = document.getElementById("password")
+                , confirm_password = document.getElementById("confirmPassword");
+              
+              function validatePassword(){
+                if(password.value != confirm_password.value) {
+                  confirm_password.setCustomValidity("Passwords Don't Match");
+                } else {
+                  confirm_password.setCustomValidity('');
+                }
+              }
+              
+              password.onchange = validatePassword;
+              confirm_password.onkeyup = validatePassword; </script>
+            
+            <div>
+                <label>Date of birth</label>
+                <input type="date">
+            </div>
+            <div class="checkbox">
+                <label>Do you consent to allow Bothniabladet to access photos,
+                    media and files on your device?
+                </label>
+                <input type="checkbox">
+            </div>
+            <div class="checkbox">
+                <label>Send me promotional emails
+                </label>
+                <input type="checkbox">
+            </div>
+                <button type="submit">Submit</button>
+       </form>
+   </div>
+    
+
+</body>
+</html>
