@@ -32,7 +32,7 @@
 
 
 
-button {
+.button {
     font-size: medium;
     padding:5px;
     margin-left: 10px;
@@ -52,7 +52,7 @@ button {
   background-color: transparent;
 
 }
-form {
+.form {
     background-image:url("norrland_700.jpg");
     width: 100%;
     height: 100px;
@@ -70,11 +70,19 @@ form {
     
     
 }
-input {
+#gsearch {
   width: 70%;
   padding-top:10px;
   font-size: 14px;
   
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
 }
 .column {
     float: left;
@@ -122,4 +130,7 @@ input {
     color: white;
     font-size: 35px;
     cursor: pointer;
+  }
+  .selectButton {
+    font-size: small;
   }
