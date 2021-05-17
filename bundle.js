@@ -41,10 +41,24 @@ function getImagesFromDatabase(searchquery) {
 
 function showImages(imageUrls) {
     console.log("showImages function called")
+    let imageSearchResults = document.getElementById("image-search-results")
+    let imageList = document.createElement("ul")
+    imageSearchResults.innerHTML = ''
+    imageSearchResults.appendChild(imageList)
+
     for (let imageUrl of imageUrls) {
         console.log("imageUrl:", imageUrl)
-        showImageOnScreen(imageUrl)
+        addImageToUlList(imageUrl, imageList)
     }
+}
+
+function addImageToUlList(imageUrl, imageList) {
+    console.log("Showing image on screen")
+    let upload = document.createElement("img")
+    upload.src = imageUrl
+    let li = document.createElement("li")
+    li.appendChild(upload)
+    imageList.appendChild(li)
 }
 
 function showImageOnScreen(imageUrl) {
@@ -52,8 +66,6 @@ function showImageOnScreen(imageUrl) {
     let upload = document.createElement("img")
     upload.src = imageUrl ;
     document.body.appendChild(upload)
-
-
 }
 
 },{}]},{},[1])(1)
