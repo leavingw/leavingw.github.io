@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/lendal-9/bothniabanan/issues"
   },
-  "homepage": "https://github.com/lendal-9/bothniabanan#readme"
+  "homepage": "https://github.com/lendal-9/bothniabanan#readme",
+  "dependencies": {
+    "gridjs-selection": "^4.0.0"
+  }
 }
