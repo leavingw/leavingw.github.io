@@ -27,5 +27,15 @@
 <button id="bertil" onclick="mymodule.addparagraph()">jag är knapp 2</button>
 <button id="upload" onclick="mymodule.upload()">Lägg till bild</button>
 
+  <!-- Från main.html -->
+  <form onsubmit="mymodule.search(event)">
+    <label for="gsearch">Search:</label>
+    <input type="search" id="gsearch" name="gsearch">
+    <button type="submit">search</button>
+    <p id="search">popular categories:<a href="https://www.w3.org/">Spring, Winter, Autumn, Flowers,Forest</a></p>
+  </form>
+
+
+
 </body>
 </html>

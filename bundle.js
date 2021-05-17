@@ -18,8 +18,43 @@ module.exports.addparagraph = function(){
 module.exports.upload = function(){
     console.log("Document", document)
     let upload = document.createElement("img")
-    upload.src = 'https://media.geeksforgeeks.org/wp-content/uploads/20190529122828/bs21.png';
+    upload.src = 'https://www.kungahuset.se/images/200.44d65b65143d2fef3c9628/1390819079165/H.M._Konung_Carl_XVI_Gustaf_Kungl.Hovstaterna_Alexis_DaflosW.jpg';
     document.body.appendChild(upload)
-}    
+}
+module.exports.search = function(event){
+    console.log("search function called");
+    console.log("search function got variable event:", event);
+    console.log("search query received:", event.target[0].value);
+    event.preventDefault();
+    let searchquery = event.target[0].value;
+    // Hämta lista med bilder från DB som matchar sökningen
+    let imageUrls = getImagesFromDatabase(searchquery) // Ersätt med hämta från databas
+    showImages(imageUrls) //Visa bilderna på sidan
+}
+
+function getImagesFromDatabase(searchquery) {
+    console.log("getImagesFromDatabase function called")
+    let images = ['https://www.kungahuset.se/images/200.44d65b65143d2fef3c9628/1390819079165/H.M._Konung_Carl_XVI_Gustaf_Kungl.Hovstaterna_Alexis_DaflosW.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1280px-Image_created_with_a_mobile_phone.png'] // Ersätt med hämta från databas
+    console.log("Images found", images)
+    return images
+}
+
+function showImages(imageUrls) {
+    console.log("showImages function called")
+    for (let imageUrl of imageUrls) {
+        console.log("imageUrl:", imageUrl)
+        showImageOnScreen(imageUrl)
+    }
+}
+
+function showImageOnScreen(imageUrl) {
+    console.log("Showing image on screen")
+    let upload = document.createElement("img")
+    upload.src = imageUrl ;
+    document.body.appendChild(upload)
+
+
+}
+
 },{}]},{},[1])(1)
 });
