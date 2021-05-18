@@ -5,28 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bothniabladet</title>
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="/css/search.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
    <div>
         <ul id="u1">
             <li ><a id="bothnia" href="main.html" >Bothniabladet</a></li>
-            <li class="l1"><button onclick="document.location='signin.html'" title="Log in">Login</button> </li>
+            <li class="l1"><button class="button" onclick="document.location='signin.html'" title="Log in">Login</button> </li>
             <li class="l1"><a href="basket.html" ><i style="font-size:20px; padding: 5px;" class="fa">&#xf291;</i></a></li>
             <li class="l1"><a href="main.html">Upload</a></li>
             <li class="l1"><a href="signup.html">Sign up</a></li>
-            <li class="l1"><a href="sida3.html">Contact</a></li>
-            <li class="l1"><a href="sida4.html">User terms</a></li>
+            <li class="l1"><a href="Contact.html">Contact</a></li>
+            <li class="l1"><a href="userterms.html">User terms</a></li>
         
         </ul> 
         
     </div>
     
-    <form action="/action_page.php" >
+    <form class="form">
         <label for="gsearch">Search:</label>
         <input type="search" id="gsearch" name="gsearch" >
-        <button type="submit">search</button>
+        <button class="button" type="submit">search</button>
        
         <p id="search">popular categories:<a href="https://www.w3.org/">Spring, Winter, Autumn, Flowers,Forest</a></p>
         
@@ -34,30 +34,32 @@
 
 <div class="row">
   <div class="column">
-    <img src="fjall.jpg" alt="Nature" onclick="myFunction(this);">
+   
+    <img src="/pictures/fjall.jpg" alt="Nature" onclick="bildSpel(this);">
+      
+    <img src="/pictures/norrsken.jpg" alt="norrsken" onclick="bildSpel(this);">
   
-    <img src="norrsken.jpg" alt="Snow" onclick="myFunction(this);">
-  
-    <img src="ren.jpg" alt="Mountains" onclick="myFunction(this);">
+    <img src="/pictures/ren.jpg" alt="ren" onclick="bildSpel(this);">
  
   
-    <img src="talt.jpg" alt="Lights" onclick="myFunction(this);">
+    <img src="/pictures/snow.jpg" alt="talt" onclick="bildSpel(this);">
   </div>
 </div>
 
 <!-- The expanding image container -->
 <div class="container">
   <!-- Close the image -->
-  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+<span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
 
   <!-- Expanded image -->
-  <img id="expandedImg" style="width:80%; display: block; margin-left: auto; margin-right: auto;">
 
+<img id="expandedImg" style="width:80%; display: block; margin-left: auto; margin-right: auto;">
+ 
   <!-- Image text -->
   <div id="imgtext"></div>
 </div>
 <script>
-    function myFunction(imgs) {
+    function bildSpel(imgs) {
   // Get the expanded image
   var expandImg = document.getElementById("expandedImg");
   // Get the image text

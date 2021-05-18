@@ -5,17 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bothniabladet</title>
-    <link rel="stylesheet" href="upload.css">
+    <link rel="stylesheet" href="/css/upload.css">">">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
    <div>
         <ul id="u1">
-          <li ><a id="bothnia" href="main.html" >Bothniabladet</a></li>
-            <li class="l1"><button onclick="document.location='login.html'" title="Log in">Login</button> </li>
-            <li class="l1"><i style="font-size:24px; padding: 15px;" class="fa">&#xf291;</i></li>
+            <li ><a id="bothnia" href="main.html" >Bothniabladet</a></li>
+            <li class="l1"><button onclick="document.location='signin.html'" title="Log in">Login</button> </li>
+            <li class="l1"><a href="basket.html" ><i style="font-size:20px; padding: 5px;" class="fa">&#xf291;</i></a></li>
             <li class="l1"><a href="main.html">Upload</a></li>
-            <li class="l1"><a href="sida2.html">Sign up</a></li>
+            <li class="l1"><a href="signup.html">Sign up</a></li>
             <li class="l1"><a href="sida3.html">Contact</a></li>
             <li class="l1"><a href="sida4.html">User terms</a></li>
         
@@ -32,12 +32,14 @@
 </div>
 
   <div>
+    <div class="Name">
     <label id="Name">&emsp; &nbsp;Name</label>
     <input type="Name">
   </div>
   
   </div
     
+  
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
     <script>
@@ -79,20 +81,29 @@
     <body>
     
     <form name="form1" id="form1" action="/action_page.php">
+  <div class="Category">
     Category: <select name="Category" id="subject">
         <option value="" selected="selected">Select Category</option>
+    <div class="Select Category"></div>
       </select>
       <br><br>
+    </div>
 
   <form action="https://example.com">
+    <div class="Date"></div>
     <label>
       Date:
       <input type="date" name="bday">
     </label>
+  </div>
   
     <H4>Image description</H4>
+    <div class="description"></div>
 
+    <form action="/action_page.php">
+      <div class="text">
      <input type="text" id="myText" value="Some text...">
+      </div>
 
 <button onclick="myFunction()">submit</button>
 
