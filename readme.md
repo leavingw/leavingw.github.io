@@ -1,5 +1,8 @@
 Vi har skapat en koppling till något som heter node och gör att vi kan installera ett paket 
 
+
+## Terminalkommandon
+
 npm run build
 =Gör att det vi ändrar i main.js tolkas till bundle.js
 
