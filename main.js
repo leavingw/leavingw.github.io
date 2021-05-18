@@ -1,41 +1,75 @@
-console.log("det här är main.js..2")
+var Airtable = require('airtable');
+Airtable.configure({ apiKey: 'keyBAW8gQGoBIlqC8' });
+var airtableBase =  new Airtable().base('appoeXg94zl1eIItK');
 
-//function test(){
-module.exports.test = function(){
-    console.log("nu ändras det igen")
-    const search_results = document.querySelectorAll("button#bertil");
-    console.log("search_results", search_results);
-   let button = search_results[0];
-   button.innerHTML="Jag är bertil"
-}
-module.exports.addparagraph = function(){
-    console.log("Document", document)
-    let paragraph = document.createElement("p")
-    paragraph.innerHTML = "Jag är en paragraf"
-    document.body.appendChild(paragraph)
-}
-module.exports.upload = function(){
-    console.log("Document", document)
-    let upload = document.createElement("img")
-    upload.src = 'https://www.kungahuset.se/images/200.44d65b65143d2fef3c9628/1390819079165/H.M._Konung_Carl_XVI_Gustaf_Kungl.Hovstaterna_Alexis_DaflosW.jpg';
-    document.body.appendChild(upload)
-}
 module.exports.search = function(event){
     console.log("search function called");
     console.log("search function got variable event:", event);
     console.log("search query received:", event.target[0].value);
     event.preventDefault();
-    let searchquery = event.target[0].value;
+    let searchQuery = event.target[0].value;
     // Hämta lista med bilder från DB som matchar sökningen
-    let imageUrls = getImagesFromDatabase(searchquery) // Ersätt med hämta från databas
-    showImages(imageUrls) //Visa bilderna på sidan
+    getImagesFromDatabase(searchQuery, showImages); // showImages is called when all images that match the searchQuery have been retrieved
+    console.log("Search-Done")
 }
 
-function getImagesFromDatabase(searchquery) {
-    console.log("getImagesFromDatabase function called")
-    let images = ['https://www.kungahuset.se/images/200.44d65b65143d2fef3c9628/1390819079165/H.M._Konung_Carl_XVI_Gustaf_Kungl.Hovstaterna_Alexis_DaflosW.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1280px-Image_created_with_a_mobile_phone.png','https://www.kungahuset.se/images/200.44d65b65143d2fef3c9628/1390819079165/H.M._Konung_Carl_XVI_Gustaf_Kungl.Hovstaterna_Alexis_DaflosW.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1280px-Image_created_with_a_mobile_phone.png','https://www.kungahuset.se/images/200.44d65b65143d2fef3c9628/1390819079165/H.M._Konung_Carl_XVI_Gustaf_Kungl.Hovstaterna_Alexis_DaflosW.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1280px-Image_created_with_a_mobile_phone.png','https://www.kungahuset.se/images/200.44d65b65143d2fef3c9628/1390819079165/H.M._Konung_Carl_XVI_Gustaf_Kungl.Hovstaterna_Alexis_DaflosW.jpg', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/1280px-Image_created_with_a_mobile_phone.png'] // Ersätt med hämta från databas
-    console.log("Images found", images)
-    return images
+function getImagesFromDatabase(searchQuery, callback) {
+    let searchFormula = createSearchFormula(searchQuery);
+   
+    let imageUrls = [];
+    // Based on https://airtable.com/appoeXg94zl1eIItK/api/docs#javascript/table:foton:list
+    airtableBase('Foton').select({
+        // Selecting the first 3 records in database:
+        maxRecords: 3,
+        view: "database",
+        filterByFormula: searchFormula
+    }).eachPage(function page(records, fetchNextPage) {
+        // This function (`page`) will get called for each page of records.
+   
+        records.forEach(function(record) {
+            console.log('Retrieved Record:', record);
+            console.log('Retrieved Record- Name:', record.get('Name'));
+            console.log('Retrieved Record -Attachments:', record.get('Attachments'));
+
+            let attachments = record.get('Attachments');
+
+            if(attachments.length > 0) {
+                imageUrls.push(attachments[0].url);
+            }
+
+        });
+   
+        // To fetch the next page of records, call `fetchNextPage`.
+        // If there are more records, `page` will get called again.
+        // If there are no more records, `done` will get called.
+        fetchNextPage();
+   
+    }, function done(err) {
+        if (err) { console.error(err); return; }
+        console.log("getImagesFromDatabase - imageUrls", imageUrls);
+        callback(imageUrls)
+    });
+}
+
+function createSearchFormula(searchQuery) {
+    // var myFilter = `AND(LOWER("${searchQuery.split(" ").join('"), LOWER("')}"))`;
+    var searchTerms = searchQuery.split(" ");
+    var searchFormula = `SEARCH(LOWER("${searchQuery}"), {keywords})`;
+    console.log("searchTerms", searchTerms);
+    console.log("searchTerms.length", searchTerms.length);
+
+    if(searchTerms.length > 1) {
+        console.log("if statement");
+        var myFilter = 'OR(SEARCH(LOWER("';
+
+        myFilter += searchTerms.join(`"), {keywords}), SEARCH(LOWER("`)
+        myFilter += `"), {keywords})`;
+        myFilter += `)`;
+        searchFormula = myFilter;
+    }
+    console.log("searchFormula", searchFormula);
+   
+    return searchFormula;
 }
 
 function showImages(imageUrls) {
@@ -58,11 +92,4 @@ function addImageToUlList(imageUrl, imageList) {
     let li = document.createElement("li")
     li.appendChild(upload)
     imageList.appendChild(li)
-}
-
-function showImageOnScreen(imageUrl) {
-    console.log("Showing image on screen")
-    let upload = document.createElement("img")
-    upload.src = imageUrl ;
-    document.body.appendChild(upload)
 }
