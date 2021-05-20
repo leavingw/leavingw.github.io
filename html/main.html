@@ -7,6 +7,7 @@
     <title>Bothniabladet</title>
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="../bundle.js"></script>
 </head>
 <body>
    <div>
@@ -23,14 +24,16 @@
         
     </div>
     
-    <form action="/action_page.php" >
+    <form onsubmit="mymodule.search(event)">
         <label for="gsearch">Search:</label>
-        <input type="search" id="gsearch" name="gsearch" >
+        <input type="search" id="gsearch" name="gsearch">
         <button type="submit">search</button>
-       
         <p id="search">popular categories:<a href="https://www.w3.org/">Spring, Winter, Autumn, Flowers,Forest</a></p>
-        
-    </form>
+      </form>
+    
+    <div id="image-search-results">
+      
+    </div>
 
 </body>
 </html>
