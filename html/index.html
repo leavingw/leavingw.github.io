@@ -24,13 +24,19 @@
         </ul> 
     </div>
     
-    <form onsubmit="mymodule.search(event)">
-        <label for="gsearch">Search:</label>
-        <input type="search" id="gsearch" name="gsearch">
-        <button type="submit">search</button>
-        <p id="search">popular categories:<a href="https://www.w3.org/">Politik, Djur, Kungen, Ikon</a></p>
+    <div class = "search-area">
+    <img class="header-image" src="../pictures/mountainsnew.jpg">
+
+    <form id="search" onsubmit="mymodule.search(event)">
+        <div class="one-liner">
+            <label for="gsearch">Search:</label>
+            <input type="search" id="gsearch" name="gsearch">
+            <button type="submit">search</button>
+        </div>
+        <p>Popular categories: Politik, Djur, Kungen, Ikon</p>
     </form>
     
+    </div>
     <div id="image-search-results">      
     </div>
 
