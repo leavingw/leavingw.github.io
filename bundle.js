@@ -202,14 +202,21 @@ module.exports.search = function(event){
     console.log("Search-Done")
 }
 
-function getImagesFromDatabase(searchQuery, callback) {
+module.exports.sendMail = function(event){
+    console.log("sendMail function called");
+    console.log("sendMail function got variable event:", event);
+}
+
+function getImagesFromDatabase(searchQuery, onSuccess) {
     let searchFormula = createSearchFormula(searchQuery);
    
     let imageUrls = [];
+    let imageDetails = [];
     // Based on https://airtable.com/appoeXg94zl1eIItK/api/docs#javascript/table:foton:list
     airtableBase('Foton').select({
         // Selecting the first 3 records in database:
-        maxRecords: 3,
+        maxRecords: 100,
+        pageSize: 3,
         view: "database",
         filterByFormula: searchFormula
     }).eachPage(function page(records, fetchNextPage) {
@@ -223,8 +230,15 @@ function getImagesFromDatabase(searchQuery, callback) {
             let attachments = record.get('Attachments');
 
             if(attachments.length > 0) {
-                imageUrls.push(attachments[0].url);
+                imageUrls.push(attachments[0].url)
+                imageDetails.push({
+                    id: record.get('PKbildID'),
+                    url: attachments[0].url,              
+                    licenseType: record.get('LicenseType'),
+                    
+                })
             }
+
 
         });
    
@@ -236,7 +250,11 @@ function getImagesFromDatabase(searchQuery, callback) {
     }, function done(err) {
         if (err) { console.error(err); return; }
         console.log("getImagesFromDatabase - imageUrls", imageUrls);
-        callback(imageUrls)
+        console.log("getImagesFromDatabase - imagedetails", imageDetails);
+        if(imageUrls.length == 0){
+            alert("No search result, please try different terms")
+        }
+        onSuccess(imageDetails)
     });
 }
 
@@ -261,25 +279,37 @@ function createSearchFormula(searchQuery) {
     return searchFormula;
 }
 
-function showImages(imageUrls) {
+function showImages(imagesDetails) {
     console.log("showImages function called")
+    console.log("showImages function received", imagesDetails)
     let imageSearchResults = document.getElementById("image-search-results")
     let imageList = document.createElement("ul")
     imageSearchResults.innerHTML = ''
     imageSearchResults.appendChild(imageList)
-
-    for (let imageUrl of imageUrls) {
-        console.log("imageUrl:", imageUrl)
-        addImageToUlList(imageUrl, imageList)
+//Let imageUrl of imageUrls) imageUrls = ["string1", "string2", ]
+//Let imageDetails of imagesDetails) imagesDetails = [{id:"bildid", url:"string1"}, {id:"bildid", url:"string2"}, ]
+    for (let imageDetails of imagesDetails) {
+        console.log("imageUrl:", imageDetails.url)
+        addImageToUlList(imageDetails, imageList)
     }
 }
 
-function addImageToUlList(imageUrl, imageList) {
+function addImageToUlList(imageDetails, imageList) {
     console.log("Showing image on screen")
-    let upload = document.createElement("img")
-    upload.src = imageUrl
     let li = document.createElement("li")
-    li.appendChild(upload)
+
+    let image = document.createElement("img")
+    image.src = imageDetails.url
+    li.appendChild(image)
+
+    let idParagraph = document.createElement("p")
+    idParagraph.innerText = "Picture id: " + imageDetails.id
+    li.appendChild(idParagraph)
+
+    let licenseTypeParagraph = document.createElement("p")
+    licenseTypeParagraph.innerText = "License type: " + imageDetails.licenseType
+    li.appendChild(licenseTypeParagraph)
+
     imageList.appendChild(li)
 }
 

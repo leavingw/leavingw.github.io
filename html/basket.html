@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bothniabladet</title>
     <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css%22%3E
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="../bundle.js"></script>
 </head>
 <body>
    <div>
@@ -19,37 +20,60 @@
                 <li class="l1"><a href="signup.html">Sign up</a></li>
                 <li class="l1"><a href="Contact.html">Contact</a></li>
                 <li class="l1"><a href="userterms.html">User terms</a></li>
-            
             </ul> 
-
         </ul> 
     </div>
 
-    form
-    <div class="wrapper">
-        <div class="left">
-        <h4>Peter Anderson</h4>
-        <p>Professional Photographer</p>
-    </div>
-        <div class="right">
-
-            <div class="info">
-                <h3>Information</h3>
-                <div class="info_data">
-                    <div class="data">
-                        <h4>Email</h4>
-                        <p>PeterAnderson1976@gmail.com</p>
-                    </div>
-                    <div class="data">
-                        <h4>Phone</h4>
-                        <p>070-6785-656</p>
+    <ul>
+        <div class="fcf-body">
+        <div id="fcf-form">
+        <h3 class="fcf-h3">Contact us</h3>
+        <form id="fcf-form-id" class="fcf-form-class" onsubmit="mymodule.sendMail(event)">
+            <li>
+                <div class="fcf-form-group">
+                    <label for="Name" class="fcf-label">Your name</label>
+                    <div class="fcf-input-group">
+                    <input type="text" id="Name" name="Name" class="fcf-form-control" required>
                     </div>
                 </div>
+            </li>
+            
+            <div class="fcf-form-group">
+                <label for="Name" class="fcf-label">Your company</label>
+                <div class="fcf-input-group">
+                <input type="text" id="Name" name="Name" class="fcf-form-control" required>
+                </div>
             </div>
+            
+            <div class="fcf-form-group">
+                <label for="Email" class="fcf-label">Your email address</label>
+                <div class="fcf-input-group">
+                <input type="email" id="Email" name="Email" class="fcf-form-control" required>
+                </div>
+            </div>
+
+            <div class="fcf-form-group">
+                <label for="Photo" class="fcf-label">Photo you want to buy (ID)</label>
+                <div class="fcf-input-group">
+                <input type="text" id="Name" name="Name" class="fcf-form-control" required>
+                </div>
+            </div>
+    
+            <div class="fcf-form-group">
+                <label for="Message" class="fcf-label">Additional information</label>
+                <div class="fcf-input-group">
+                <textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
+                </div>
+            </div>
+    
+            <div class="fcf-form-group">
+            <button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send Message</button>
+            </div>
+        <dialog>Thank you for your request, one of our associates will get in touch with you soon</dialog>
+        </form>
         </div>
+    
     </div>
-
-
 
     <form>
     </form>

@@ -25,6 +25,11 @@
 
 #image-search-results > ul > li > img {
   width: 100%;
-  height: 100%;
+  height: calc(100% - 2rem);
   object-fit: cover;
+}
+
+#image-search-results > ul > li > p {
+  margin:0;
+  text-align: center;
 }
