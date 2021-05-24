@@ -261,7 +261,7 @@ function getImagesFromDatabase(searchQuery, onSuccess) {
 function createSearchFormula(searchQuery) {
     // var myFilter = `AND(LOWER("${searchQuery.split(" ").join('"), LOWER("')}"))`;
     var searchTerms = searchQuery.split(" ");
-    var searchFormula = `SEARCH(LOWER("${searchQuery}"), {keywords})`;
+    var searchFormula = `SEARCH(LOWER("${searchQuery}"), LOWER({keywords}))`;
     console.log("searchTerms", searchTerms);
     console.log("searchTerms.length", searchTerms.length);
 
@@ -269,8 +269,8 @@ function createSearchFormula(searchQuery) {
         console.log("if statement");
         var myFilter = 'OR(SEARCH(LOWER("';
 
-        myFilter += searchTerms.join(`"), {keywords}), SEARCH(LOWER("`)
-        myFilter += `"), {keywords})`;
+        myFilter += searchTerms.join(`"), LOWER({keywords})), SEARCH(LOWER("`)
+        myFilter += `"), LOWER({keywords}))`;
         myFilter += `)`;
         searchFormula = myFilter;
     }
@@ -304,14 +304,20 @@ function addImageToUlList(imageDetails, imageList) {
 
     let idParagraph = document.createElement("p")
     idParagraph.innerText = "Picture id: " + imageDetails.id
+    idParagraph.classList.add("picture-id")
     li.appendChild(idParagraph)
 
     let licenseTypeParagraph = document.createElement("p")
-    licenseTypeParagraph.innerText = "License type: " + imageDetails.licenseType
+    licenseTypeParagraph.innerText = imageDetails.licenseType
+    // licenseTypeParagraph.innerText = "License type: " + imageDetails.licenseType
+    licenseTypeParagraph.classList.add("license-type")
+    licenseTypeParagraph.classList.add(imageDetails.licenseType)
     li.appendChild(licenseTypeParagraph)
 
     imageList.appendChild(li)
 }
+
+
 
 },{"airtable":6}],4:[function(require,module,exports){
 'use strict';
