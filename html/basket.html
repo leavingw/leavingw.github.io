@@ -10,7 +10,7 @@
     <script type="text/javascript" src="../bundle.js"></script>
 </head>
 <body>
-   <div>
+   <nav>
         <ul id="u1">
             <ul id="u1">
                 <li ><a id="bothnia" href="index.html" >Bothniabladet</a></li>
@@ -22,62 +22,73 @@
                 <li class="l1"><a href="userterms.html">User terms</a></li>
             </ul> 
         </ul> 
-    </div>
+    </nav>
 
-    <div>
-        <div class="fcf-body">
+    <div class="fcf-body">
         <div id="fcf-form">
-        <h3 class="fcf-h3">Contact us</h3>
-        <form id="fcf-form-id" class="fcf-form-class" onsubmit="mymodule.sendMail(event)">
+            <h3 class="fcf-h3">Contact us</h3>
+            <form id="fcf-form-id" class="fcf-form-class" onsubmit="mymodule.sendMail(event)">
                 <div class="fcf-form-group">
                     <label for="Name" class="fcf-label">Your name</label>
+                    <div class="fcf-input-group">
+                        <input type="text" id="Name" name="Name" class="fcf-form-control" required>
+                    </div>
+                </div>
+                
+                
+                <div class="fcf-form-group">
+                    <label for="Name" class="fcf-label">Your company</label>
                     <div class="fcf-input-group">
                     <input type="text" id="Name" name="Name" class="fcf-form-control" required>
                     </div>
                 </div>
-            
-            
-            <div class="fcf-form-group">
-                <label for="Name" class="fcf-label">Your company</label>
-                <div class="fcf-input-group">
-                <input type="text" id="Name" name="Name" class="fcf-form-control" required>
+                
+                <div class="fcf-form-group">
+                    <label for="Email" class="fcf-label">Your email address</label>
+                    <div class="fcf-input-group">
+                    <input type="email" id="Email" name="Email" class="fcf-form-control" required>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="fcf-form-group">
-                <label for="Email" class="fcf-label">Your email address</label>
-                <div class="fcf-input-group">
-                <input type="email" id="Email" name="Email" class="fcf-form-control" required>
-                </div>
-            </div>
 
-            <div class="fcf-form-group">
-                <label for="Photo" class="fcf-label">Photo you want to buy (ID)</label>
-                <div class="fcf-input-group">
-                <input type="text" id="Name" name="Name" class="fcf-form-control" required>
+                <div class="fcf-form-group">
+                    <label for="Photo" class="fcf-label">Photo you want to buy (ID)</label>
+                    <div class="fcf-input-group">
+                    <input type="text" id="picture-id" name="Photo" class="fcf-form-control" required>
+                    </div>
                 </div>
-            </div>
-    
-            <div class="fcf-form-group">
-                <label for="Message" class="fcf-label">Additional information</label>
-                <div class="fcf-input-group">
-                <textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
-                </div>
-            </div>
-    
-            <div class="fcf-form-group">
-            <button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send Message</button>
-            </div>
-
-           
         
-        </form>
+                <div class="fcf-form-group">
+                    <label for="Message" class="fcf-label">Additional information</label>
+                    <div class="fcf-input-group">
+                    <textarea id="Message" name="Message" class="fcf-form-control" rows="6" maxlength="3000" required></textarea>
+                    </div>
+                </div>
+        
+                <div class="fcf-form-group">
+                <button type="submit" id="fcf-button" class="fcf-btn fcf-btn-primary fcf-btn-lg fcf-btn-block">Send Message</button>
+                </div>
+            </form>
         </div>
-    
+        <img id="picture-preview" style="width:300px; height:300px; object-fit:contain;" hidden="true" src="">
     </div>
 
-    <form>
-    </form>
+    <script>
+        const queryString = window.location.search;
+        console.log(queryString);
+        // ?product=shirt&color=blue&newuser&size=m
+        const urlParams = new URLSearchParams(queryString);
+        const pictureId = urlParams.get('picture-id')
+        const pictureUrl = urlParams.get('picture-url')
+        console.log("picture Id, URL:", pictureId, pictureUrl);
 
+        const pictureIdFormInput = document.getElementById("picture-id");
+        pictureIdFormInput.setAttribute("value", pictureId);
+
+        if(pictureUrl != undefined) {
+            const picturePreview = document.getElementById("picture-preview");
+            picturePreview.setAttribute("src", pictureUrl);
+            picturePreview.hidden = false;
+        }
+    </script>
 </body>
 </html>

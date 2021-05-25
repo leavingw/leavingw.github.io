@@ -235,7 +235,9 @@ function getImagesFromDatabase(searchQuery, onSuccess) {
                     id: record.get('PKbildID'),
                     url: attachments[0].url,              
                     licenseType: record.get('LicenseType'),
-                    
+                    category: record.get('Category'),
+                    notes: record.get('Notes'),
+                    keywords: record.get('Keywords'),
                 })
             }
 
@@ -297,13 +299,16 @@ function showImages(imagesDetails) {
 function addImageToUlList(imageDetails, imageList) {
     console.log("Showing image on screen")
     let li = document.createElement("li")
+    li.onclick = function(event) { showImageDetails(imageDetails); }
+    li.setAttribute("onclick",`mymodule.showImageModal(${JSON.stringify(imageDetails)});`);
 
     let image = document.createElement("img")
     image.src = imageDetails.url
+    image.alt = imageDetails.notes
     li.appendChild(image)
 
     let idParagraph = document.createElement("p")
-    idParagraph.innerText = "Picture id: " + imageDetails.id
+    idParagraph.innerText = "Picture Id: " + imageDetails.id
     idParagraph.classList.add("picture-id")
     li.appendChild(idParagraph)
 
@@ -314,11 +319,78 @@ function addImageToUlList(imageDetails, imageList) {
     licenseTypeParagraph.classList.add(imageDetails.licenseType)
     li.appendChild(licenseTypeParagraph)
 
+    let categoryParagraph = document.createElement("p")
+    categoryParagraph.innerText = imageDetails.category
+    categoryParagraph.classList.add("category")
+    categoryParagraph.classList.add(imageDetails.category)
+    li.appendChild(categoryParagraph)
+
     imageList.appendChild(li)
 }
 
+module.exports.showImageModal = function(imageDetails) {
+    console.log("showImageDetails function called")
+    console.log("showImageDetails function received", imageDetails)
 
+    console.log("Showing image on screen")
+    let modal = document.createElement("div")
+    modal.classList.add("modal");
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 
+    let modalContent = document.createElement("div")
+    modalContent.classList.add("modal-content");
+    modal.appendChild(modalContent)
+
+    showImageDetails(imageDetails, modalContent)
+
+    document.body.appendChild(modal);
+}
+
+function showImageDetails(imageDetails, parentElement, showPurchaseButton = true) {
+
+    let image = document.createElement("img")
+    image.src = imageDetails.url
+    image.alt = imageDetails.notes
+    parentElement.appendChild(image)
+
+    let idParagraph = document.createElement("p")
+    idParagraph.innerText = "Picture Id: " + imageDetails.id
+    idParagraph.classList.add("picture-id")
+    parentElement.appendChild(idParagraph)
+
+    let licenseTypeParagraph = document.createElement("p")
+    licenseTypeParagraph.innerText = "License type: " + imageDetails.licenseType
+    parentElement.appendChild(licenseTypeParagraph)
+
+    let categoryParagraph = document.createElement("p")
+    categoryParagraph.innerText = "Category: " +  imageDetails.category
+    parentElement.appendChild(categoryParagraph)
+
+    let notesParagraph = document.createElement("p")
+    notesParagraph.innerText = "Notes: " +  imageDetails.notes
+    parentElement.appendChild(notesParagraph)
+
+    let keywordsParagraph = document.createElement("p")
+    keywordsParagraph.innerText = "Keywords: " +  imageDetails.keywords
+    parentElement.appendChild(keywordsParagraph)
+
+    
+    if(showPurchaseButton) {
+        let purchase  = document.createElement("a")
+        purchase.href = "basket.html?picture-id="+imageDetails.id+"&picture-url="+encodeURIComponent(imageDetails.url);
+        
+        let purchaseButton = document.createElement("button")
+        purchaseButton.innerText = "Buy Photo"
+        purchase.appendChild(purchaseButton);
+
+        parentElement.appendChild(purchase)
+    }
+}
 },{"airtable":6}],4:[function(require,module,exports){
 'use strict';
 

@@ -1,47 +1,50 @@
+body {
+  margin: 0;
+  display:grid;
+  grid-template-columns: auto 960px auto;
+}
+
+body > * {
+  grid-column: 2;
+}
+
+body > nav {
+  grid-column: 1/4 !important;
+}
+
 #u1 {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color:lightskyblue;
-  }
-  
-  .l1 {
-    float:right;
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-  }
-  
-  .l1 a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    text-decoration: none;
-  }
-  
-  .l1 a:hover {
-    background-color:#b9ffb6;
-  }
-  a:link, a:visited {
-    background-color:transparent;
-    color: black;
-    padding: 15px 25px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color:lightskyblue;
 }
 
-.search-area {
-  position: relative;
+.l1 {
+  float:right;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.search-area > #search {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.l1 a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  text-decoration: none;
 }
 
+.l1 a:hover {
+  background-color:#b9ffb6;
+}
+
+a:link, a:visited {
+  background-color:transparent;
+  color: black;
+  padding: 15px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
 
 button {
     font-size: medium;
