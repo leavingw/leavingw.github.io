@@ -75,13 +75,11 @@
     <script>
         const queryString = window.location.search;
         console.log(queryString);
-        // ?product=shirt&color=blue&newuser&size=m
         const urlParams = new URLSearchParams(queryString);
         const pictureId = urlParams.get('picture-id')
         const pictureUrl = urlParams.get('picture-url')
         console.log("picture Id, URL:", pictureId, pictureUrl);
 
-        const pictureIdFormInput = document.getElementById("picture-id");
         if(pictureId != undefined) {
             const pictureIdFormInput = document.getElementById("picture-id");
             pictureIdFormInput.setAttribute("value", pictureId);

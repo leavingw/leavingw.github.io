@@ -299,7 +299,6 @@ function showImages(imagesDetails) {
 function addImageToUlList(imageDetails, imageList) {
     console.log("Showing image on screen")
     let li = document.createElement("li")
-    li.onclick = function(event) { showImageDetails(imageDetails); }
     li.setAttribute("onclick",`mymodule.showImageModal(${JSON.stringify(imageDetails)});`);
 
     let image = document.createElement("img")
