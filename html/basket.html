@@ -82,7 +82,10 @@
         console.log("picture Id, URL:", pictureId, pictureUrl);
 
         const pictureIdFormInput = document.getElementById("picture-id");
-        pictureIdFormInput.setAttribute("value", pictureId);
+        if(pictureId != undefined) {
+            const pictureIdFormInput = document.getElementById("picture-id");
+            pictureIdFormInput.setAttribute("value", pictureId);
+        }
 
         if(pictureUrl != undefined) {
             const picturePreview = document.getElementById("picture-preview");
